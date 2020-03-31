@@ -1,0 +1,27 @@
+{
+  "nome": "Giovanni",
+  "cognome": "Rossi",
+  "sesso": "maschio",
+  "vivente": true,
+  "età": 27,
+  "indirizzo": {
+    "via": "Buonarroti 18",
+    "comune": "Alpette",
+    "provincia": "TO",
+    "CAP": "10080"
+  },
+  "numeriTelefono": [
+    {
+      "tipo": "casa",
+      "numero": "0000000"
+    },
+    {
+      "tipo": "cellulare",
+      "numero": "111111111"
+    }
+  ],
+  "titoli": [
+    "sig.",
+    "dott."
+  ]
+}

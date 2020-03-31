@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSON 1</title>
+    <meta name="description" content="JSON 1">
+</head>
+
+<body>
+    <p id="output" />
+
+    <script type="text/Javascript">
+        'use strict';
+        const file = 'persona.json';
+
+        // Creo un oggetto XMLHttpRequest per fare la chiamata al servizio
+        // vedi https://developer.mozilla.org/it/docs/Web/API/XMLHttpRequest
+        const request = new XMLHttpRequest();
+
+        //altrimenti si aspetta un XML
+        request.overrideMimeType('application/json');
+
+        // Definisco quale file (file) e come chiamarlo (comando GET)
+        request.open('GET', file, true);
+
+        // Definisco cosa fare quando il servizio mi risponde
+        // la funzione onload sarà chiamata dopo l'arrivo della risposta
+        // la funzione onload è una funzione callback
+        request.onload = function () {
+            //dato è un oggetto, perhè il file json contiene un solo oggetto
+            const dato = JSON.parse(this.responseText);
+            let HTML = `<div><h1>${dato.nome} ${dato.cognome}</h1></div>`;
+            mostraRisultato(HTML);
+        };
+
+        // Definisco cosa fare quando la chiamata al servizio fallisce
+        // è una funzione callback richiamata in caso di errore (passato come argomento)
+        request.onerror = errore => mostraRisultato(`<pre>ERRORE: ${errore}</pre>`);
+
+        // Chiama il servizio. Di fatto inizia la chiamata che procede come processo in background
+        // la funzione send() termina SENZA attendere il completamento della chiamata che
+        // avviene in modalità ASINCRONA
+        request.send(null);
+
+        // mostra il testo passato come argomento come inner HTML di un elememnto del DOM
+        const mostraRisultato = testo => document.getElementById('output').innerHTML = testo;
+    </script>
+
+</body>
+
+</html>
